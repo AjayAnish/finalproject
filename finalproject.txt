@@ -1,0 +1,51 @@
+package seleniumnov;
+
+import java.io.File;
+import java.io.IOException;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.io.FileHandler;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+public class finalproject2 {
+WebDriver driver;
+	
+	
+	@BeforeTest
+	public void start()
+	{
+		driver =new ChromeDriver();
+		
+		driver.get("https://recruit.iimjobs.com/login");
+		
+	}
+	
+	@Test
+	public void test() throws IOException
+	{
+		driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div/div/div[2]/div[3]/span")).click();
+        driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div/div[2]/span/div/div/div/div/div[2]/div[1]/div[2]/div[1]")).click();
+        
+        driver.findElement(By.xpath("//*[@id=\"input_name\"]")).sendKeys("Ajay ravi");
+		driver.findElement(By.xpath("//*[@id=\"input_phone\"]")).sendKeys("9037483822");
+		driver.findElement(By.xpath("//*[@id=\"input_email\"]")).sendKeys("ajayravi@gmail.com");
+		driver.findElement(By.xpath("//*[@id=\"input_designation\"]")).sendKeys("tester");
+		driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div/div[2]/span/div/div/div/div/div[2]/div[2]/div[4]/div[1]/div/div/input")).sendKeys("Ajay@123");
+		driver.findElement(By.xpath("//*[@id=\"input_confirm_password\"]")).sendKeys("Ajay@123");
+		WebElement course=driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div/div[2]/span/div/div/div/div/div[2]/div[2]/div[1]/div[2]/select"));
+		Select courseelement =new Select(course);
+		courseelement.selectByIndex(4);
+		driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div/div[2]/span/div/div/div/div/div[2]/div[2]/div[3]/div[1]/div/div[2]/input")).sendKeys("ajay123");
+		File ss=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+		FileHandler.copy(ss,new File("C:\\Users\\Ajay anish\\OneDrive\\Pictures\\finalscreen.png"));
+		
+}
+	
+	
